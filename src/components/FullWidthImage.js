@@ -4,11 +4,11 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 export default function FullWidthImage(props) {
   const {
-    height = 400,
+    height = 500,
     img,
     title,
     subheading,
-    imgPosition = "top left",
+    imgPosition = "top",
   } = props;
 
   return (
@@ -43,6 +43,7 @@ export default function FullWidthImage(props) {
               gridArea: "1/1",
               // You can set a maximum height for the image, if you wish.
               maxHeight: height,
+              paddingTop: "50%",
             }}
             layout="fullWidth"
             // You can optionally force an aspect ratio for the generated image
@@ -66,14 +67,13 @@ export default function FullWidthImage(props) {
             {/* Any content here will be centered in the component */}
             {title && (
               <h1
-                className="has-text-weight-bold is-size-3-mobile is-size-2-tablet is-size-1-widescreen"
+                className="has-text-weight-bold is-size-2 is-size-2-tablet is-size-1-widescreen is-family-sans-serif"
                 style={{
-                  boxShadow:
-                    "rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px",
-                  backgroundColor: "rgb(255, 68, 0)",
+                  textShadow: "6px 2px #000",
+                  //backgroundColor: "rgb(255, 255, 0)",
                   color: "white",
                   lineHeight: "1",
-                  padding: "0.25em",
+                  padding: "0.2em",
                 }}
               >
                 {title}
@@ -83,9 +83,9 @@ export default function FullWidthImage(props) {
               <h3
                 className="has-text-weight-bold is-size-5-mobile is-size-5-tablet is-size-4-widescreen"
                 style={{
-                  boxShadow:
-                    "rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px",
-                  backgroundColor: "rgb(255, 68, 0)",
+                  // boxShadow:
+                  //   "rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px",
+                  textShadow: "2px 2px #000",
                   color: "white",
                   lineHeight: "1",
                   padding: "0.25rem",
