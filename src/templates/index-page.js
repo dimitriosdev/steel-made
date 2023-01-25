@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
+import { useSpring, useSpringRef, animated } from '@react-spring/web'
 
 import Layout from "../components/Layout";
 // import Features from "../components/Features";
@@ -19,6 +20,19 @@ export const IndexPageTemplate = ({
   intro,
 }) => {
   const heroImage = getImage(image) || image;
+  const api = useSpringRef()
+  const springs = useSpring({
+    ref: api,
+    from: { x: 0 },
+  })
+
+  const handleClick = () => {
+    api.start({
+      to: {
+        x: springs.x.get() === 100 ? 0 : 100,
+      },
+    })
+  }
 
   return (
     <div>
@@ -31,7 +45,7 @@ export const IndexPageTemplate = ({
                 <div className="content">
                   <div className="content">
                     <div className="tile">
-                      <h1 className="title has-text-weight-normal">{mainpitch.title}</h1>
+                      <animated.h1 onClick={handleClick} className="title has-text-weight-normal" style={{...springs}}>{mainpitch.title}</animated.h1>
                     </div>
                     <div className="tile">
                       <h3 className="subtitle has-text-weight-light">{mainpitch.description}</h3>
@@ -39,7 +53,7 @@ export const IndexPageTemplate = ({
                   </div>
                   <div className="columns">
                     <div className="column is-12">
-                      <h3 className="has-text-weight-light is-size-3">
+                      <h3 className="has-text-weight-light is-size-3 animated bounceInLeft">
                         {heading}
                       </h3>
                       <p>{description}</p>
